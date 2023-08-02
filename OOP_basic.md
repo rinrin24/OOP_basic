@@ -257,6 +257,99 @@ OOPではクラスというひな型を定義してからそのひな型に沿�
     のように書くことができます。`Shape`クラスは`GetArea()`というメソッドを持っていますが、`Rectangle`クラス、`Triangle`クラスが`GetArea()`メソッドを上書き(オーバーライド)したことによって`GetArea()`が実行する内容が異なるものになります。これによって関数の引数や戻り値として`Shape`を渡したり、もしくはインスタンス変数の型を`Shape`にすることもできるのです。このように同じ名前のメソッドの名前を共有して同じものとして扱わせるのがポリモーフィズムなのです。
 
 3. 継承
+
+    最後に継承という機能についてです。正直あまり使う機会がなかったので自分自身その利点を説明できるかは分からないのですが、とりあえずどういうものなのかを説明します。
+
+    継承は、複数のクラスがあったとき、その中で共通する変数やメソッドを一つのクラスにまとめて重複を減らすということです。
+
+    継承をするには、共通に使いたいメソッドとインスタンス変数を持ったクラスを新たに定義し、それを利用したいクラスはそれを継承するということを宣言します。OOPではこの共通に使うクラスを**親クラス**やスーパークラスと言い、それを利用するクラスを**子クラス**やサブクラスと呼ばれます。
+    
+    具体的にコードで見ていきましょう。まず以下の様に猫クラスと犬クラスを定義します。
+    ```C#
+    class Cat{
+        public void SetName(string newName){
+            this.Name = newName;
+        }
+        public void Meow(){
+            Console.WriteLine(this.Name+"「ニャー」");
+        }
+        public string Name { get; set; }
+    }
+    class Dog{
+        public void SetName(string newName){
+            this.Name = newName;
+        }
+        public void Woof(){
+            Console.WriteLine(this.Name+"「ワン」");
+        }
+        public string Name { get; set; }
+    }
+    ```
+
+    実際にインスタンスとして作成してメソッドを実行すると以下のようになります。
+
+    ```C#
+    Cat cat = new Cat();
+	cat.SetName("たま");
+	cat.Meow();
+	Dog dog = new Dog();
+	dog.SetName("ぽち");
+	dog.Woof();
+    ```
+
+    > 出力結果
+
+    ```
+    たま「ニャー」
+    ぽち「ワン」
+    ```
+
+    しかしここでは2つのクラスの中に全く同じ動作をするメソッドがありますね。`SetName()`というメソッドはどちらもインスタンス変数`Name`に文字列を代入するメソッドですね。ではこれを一つのクラスに分離してみましょう。
+
+    ```C#
+    class Animal{
+		public void SetName(string newName){
+			this.Name = newName;
+		}
+		public string Name { get; set; }
+	}
+    ```
+
+    C#では`class 子クラス名: 親クラス`のようにして親クラスから継承した子クラスを定義することができます。
+
+    ```C#
+    class Cat: Animal{
+        public void Meow(){
+            Console.WriteLine(this.Name+"「ニャー」");
+        }
+    }
+    class Dog: Animal{
+        public void Woof(){
+            Console.WriteLine(this.Name+"「ワン」");
+        }
+    }
+    ```
+
+    先ほどはあった`SetName`メソッドと変数`Name`の定義がなくなっていますね。そのかわり両方とも親クラス`Animal`を継承しています。実際に動かしてみると以下のようになり、正常に動いていることがわかりますね。
+
+    ```C#
+    Cat cat = new Cat();
+    cat.SetName("みけ");
+    cat.Meow();
+    Dog dog = new Dog();
+    dog.SetName("しば");
+    dog.Woof();
+    ```
+
+    >出力結果
+
+    ```
+    みけ「ニャー」
+    しば「ワン」
+    ```
+
+    このように、全く同じ機能を複数のクラスに実装するときに使われるのが継承です。継承は子クラスis a親クラスの関係を作り出します(親クラスis子クラスとは限らないので注意！)。しかし子クラスは全て同じメソッドを使う必要が出てきてしまうので親クラスでそのメソッドを変更すると全ての子クラスに影響が出てしまうため親クラスを変更するときは慎重になる必要があります。これは委譲(has a の関係を作る)やインターフェースを使うと変更しやすさを残したまま似た構造を作ることができます。
+
 ### OOPが得たもの・失ったもの
 
 </main>
