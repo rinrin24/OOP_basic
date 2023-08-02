@@ -76,43 +76,43 @@ OOPではクラスというひな型を定義してからそのひな型に沿�
     軽くプログラムを書いてみましょうか。
     ```C#
     class Car{
-        public Car(int newFuel){		//コンストラクタ
-            this.fuel = newFuel;
-            this.speed = 0;
+        public Car(int newFuel){		// コンストラクタ
+            this.Fuel = newFuel;
+            this.Speed = 0;
         }
 
-        public void Accelerate(void){	//車が加速するメソッド
-            this.fuel -= 10;
-            this.speed += 10;
+        public void Accelerate(void){	// 車が加速するメソッド
+            this.Fuel -= 10;
+            this.Speed += 10;
         }
-        public int fuel { get; set; }			//燃料を表すインスタンス変数
-        public int speed { get; set; }			//スピードを表すインスタンス変数
+        public int Fuel { get; set; }			// 燃料を表すインスタンス変数
+        public int Speed { get; set; }			// スピードを表すインスタンス変数
     }
     ```
     ざっと車クラスを定義してみました。
 
     このクラスは二つの関数と二つの特別な変数を持っています。
 
-    このクラスの中にあるAccelerateなどの関数のことを**メソッド**、特にクラスの名前と同じメソッドのことを**コンストラクタ**といいます。そしてfuelなどの変数を**インスタンス変数**といいます。
+    このクラスの中にあるAccelerateなどの関数のことを**メソッド**、特にクラスの名前と同じメソッドのことを**コンストラクタ**といいます。そしてFuelなどの変数を**インスタンス変数**といいます。
 
     クラスというのは、ひな型ということを何回か話しましたね。クラスはそのままだと抽象的なものなの、いわばお菓子作りにおけるカップのようなもので、プリンを作るにはその中にプリンを入れる必要がありますね(蒸すといった工程は無視してください……)。そのひな型(クラス)からできたお菓子のことを**インスタンス**と呼びます。
 
     ```C#
-    Car myCar = new Car(100);               //Carクラスのインスタンスを生成
+    Car myCar = new Car(100);               // Carクラスのインスタンスを生成
     ```
 
-    この`myCar`という変数に車クラスのインスタンスが代入されました。インスタンスが作成されるとき、特別なメソッドであるコンストラクタが呼び出されます。先ほど定義した`Car(int newFuel){~`の部分ですね。ここでは引数に100という数字が与えられているので、`newFuel`には100が代入され、さらに`fuel`というインスタンス変数に100が代入されます。C#ではインスタンス変数に同じクラスのメソッドから代入するときは`this.変数名`のように書きます。
+    この`myCar`という変数に車クラスのインスタンスが代入されました。インスタンスが作成されるとき、特別なメソッドであるコンストラクタが呼び出されます。先ほど定義した`Car(int newFuel){~`の部分ですね。ここでは引数に100という数字が与えられているので、`newFuel`には100が代入され、さらに`Fuel`というインスタンス変数に100が代入されます。C#ではインスタンス変数に同じクラスのメソッドから代入するときは`this.変数名`のように書きます。
 
     インスタンス変数というのはそのインスタンス特有の変数です。
 
     ```C#
     myCar = new Car(100);
-    Console.WriteLine(myCar.fuel);      //myCar.fuelを表示
-    Console.WriteLine(myCar.speed);     //myCar.speedを表示
-    myCar.fuel = 200;                   //myCar.fuelに200を代入
-    myCar.speed = 50;                   //myCar.speedに50を代入
-    Console.WriteLine(myCar.fuel);      //myCar.fuelを表示
-    Console.WriteLine(myCar.speed);     //myCar.speedを表示
+    Console.WriteLine(myCar.Fuel);      // myCar.Fuelを表示
+    Console.WriteLine(myCar.Speed);     // myCar.Speedを表示
+    myCar.Fuel = 200;                   // myCar.Fuelに200を代入
+    myCar.Speed = 50;                   // myCar.Speedに50を代入
+    Console.WriteLine(myCar.Fuel);      // myCar.Fuelを表示
+    Console.WriteLine(myCar.Speed);     // myCar.Speedを表示
     ```
 
     > 出力結果
@@ -122,13 +122,13 @@ OOPではクラスというひな型を定義してからそのひな型に沿�
     200
     50
     ```
-    このように`myCar.fuel`のようにすることでインスタンス変数にアクセスすることができます。インスタンス変数はインスタンス特有のものなので他のインスタンスを作ったら別のものとして扱われます。
+    このように`myCar.Fuel`のようにすることでインスタンス変数にアクセスすることができます。インスタンス変数はインスタンス特有のものなので他のインスタンスを作ったら別のものとして扱われます。
 
     ```C#
     Car car1 = new Car(100);
     Car car2 = new Car(200);
-    Console.WriteLine(car1.fuel);
-    Console.WriteLine(car2.fuel);
+    Console.WriteLine(car1.Fuel);
+    Console.WriteLine(car2.Fuel);
     ```
 
     > 出力結果
@@ -136,7 +136,7 @@ OOPではクラスというひな型を定義してからそのひな型に沿�
     100
     200
     ```
-    `car1`のインスタンスではコンストラクタでインスタンス変数`fuel`に100が代入されていますが、`car2`のインスタンスの`fuel`では200が代入されています。このようにインスタンスを作るとそのなかのインスタンス変数はインスタンスごとに独立したものになります。
+    `car1`のインスタンスではコンストラクタでインスタンス変数`Fuel`に100が代入されていますが、`car2`のインスタンスの`Fuel`では200が代入されています。このようにインスタンスを作るとそのなかのインスタンス変数はインスタンスごとに独立したものになります。
 
     少しややこしくなってきましたね。一度まとめます。
 
@@ -157,26 +157,26 @@ OOPではクラスというひな型を定義してからそのひな型に沿�
     ```C#
     class Rectangle{
         public Rectangle(int newWidth, int newHeight){
-            this.width = newWidth;
-            this.height = newHeight;
+            this.Width = newWidth;
+            this.Height = newHeight;
         }
         public int GetArea(){
-            return this.width * this.height;
+            return this.Width * this.Height;
         }
-        public int width { get; set; }
-        public int height { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
     }
 
     class Triangle{
         public Triangle(int newWidth, int newHeight){
-            this.width = newWidth;
-            this.height = newHeight;
+            this.Width = newWidth;
+            this.Height = newHeight;
         }
         public int GetArea(){
-            return this.width * this.height / 2;
+            return this.Width * this.Height / 2;
         }
-        public int width { get; set; }
-        public int height { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
     }
     ```
 
@@ -193,26 +193,26 @@ OOPではクラスというひな型を定義してからそのひな型に沿�
     ```C#
     class Rectangle : Shape{
         public Rectangle(int newWidth, int newHeight){
-            this.width = newWidth;
-            this.height = newHeight;
+            this.Width = newWidth;
+            this.Height = newHeight;
         }
         public override int GetArea(){
-            return this.width * this.height;
+            return this.Width * this.Height;
         }
-        public int width { get; set; }
-        public int height { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
     }
 
     class Triangle : Shape{
         public Triangle(int newWidth, int newHeight){
-            this.width = newWidth;
-            this.height = newHeight;
+            this.Width = newWidth;
+            this.Height = newHeight;
         }
         public override int GetArea(){
-            return this.width * this.height / 2;
+            return this.Width * this.Height / 2;
         }
-        public int width { get; set; }
-        public int height { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
     }
 
     abstract class Shape{
@@ -228,24 +228,24 @@ OOPではクラスというひな型を定義してからそのひな型に沿�
 
     通常は、
     ```C#
-    Rectangle shape1 = new Rectangle(10, 20);   //Rectangleクラスのインスタンスを作成
-    int shape1Area = shape1.GetArea();          //面積を計算
-    Console.WriteLine(shape1Area);              //面積を表示
+    Rectangle shape1 = new Rectangle(10, 20);   // Rectangleクラスのインスタンスを作成
+    int shape1Area = shape1.GetArea();          // 面積を計算
+    Console.WriteLine(shape1Area);              // 面積を表示
 
-    Triangle shape2 = new Triangle(10, 20);     //Triangleクラスのインスタンスを作成
-    int shape2Area = shape2.GetArea();          //面積を計算
-    Console.WriteLine(shape2Area);              //面積を表示
+    Triangle shape2 = new Triangle(10, 20);     // Triangleクラスのインスタンスを作成
+    int shape2Area = shape2.GetArea();          // 面積を計算
+    Console.WriteLine(shape2Area);              // 面積を表示
     ```
 
     のようにして、Rectangle型の変数、Triangle型の変数に代入します。しかし、Shape型を継承したことによって、
     ```C#
-    Shape shape1 = new Rectangle(10, 20);       //Rectangleクラスのインスタンスを作成し、Shape型の変数に代入
-    int shape1Area = shape1.GetArea();          //面積を計算
-    Console.WriteLine(shape1Area);              //面積を表示
+    Shape shape1 = new Rectangle(10, 20);       // Rectangleクラスのインスタンスを作成し、Shape型の変数に代入
+    int shape1Area = shape1.GetArea();          // 面積を計算
+    Console.WriteLine(shape1Area);              // 面積を表示
 
-    Shape shape2 = new Triangle(10, 20);        //Triangleクラスのインスタンスを作成し、Shape型の変数に代入
-    int shape2Area = shape2.GetArea();          //面積を計算
-    Console.WriteLine(shape2Area);              //面積を表示
+    Shape shape2 = new Triangle(10, 20);        // Triangleクラスのインスタンスを作成し、Shape型の変数に代入
+    int shape2Area = shape2.GetArea();          // 面積を計算
+    Console.WriteLine(shape2Area);              // 面積を表示
     ```
 
     > 出力結果
