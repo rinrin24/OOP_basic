@@ -748,7 +748,7 @@ rin.nkmr219162@google.com
 までお願いします。
 
 また、何か間違い、もしくは補足の説明があれば以下のページで説明します。
-https://github.com/ririn24/errata.html
+https://rinrin24.github.io/ririn24/errata.html
 
 ![](images/QR_923668.png)
 
