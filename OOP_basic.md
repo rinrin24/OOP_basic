@@ -19,7 +19,7 @@
    1. OOPは現実のものをそのまま表せる？
 1. 手続き型言語から進化したオブジェクト指向
    1. OOPがもつ三大要素
-      1. クラス
+      1. カプセル化
       2. ポリモーフィズム
       3. 継承
 2. クラスとは
@@ -71,17 +71,21 @@ OOPではクラスというひな型を定義してからそのひな型に沿�
     軽くプログラムを書いてみましょうか。
     ```C#
     class Car{
-        public Car(int newFuel){		// コンストラクタ
+        // コンストラクタ
+        public Car(int newFuel){
             this.Fuel = newFuel;
             this.Speed = 0;
         }
 
-        public void Accelerate(void){	// 車が加速するメソッド
+        // 車が加速するメソッド
+        public void Accelerate(void){
             this.Fuel -= 10;
             this.Speed += 10;
         }
-        public int Fuel { get; set; }			// 燃料を表すインスタンス変数
-        public int Speed { get; set; }			// スピードを表すインスタンス変数
+        // 燃料を表すインスタンス変数
+        public int Fuel { get; set; }
+        // スピードを表すインスタンス変数
+        public int Speed { get; set; }
     }
     ```
     ざっと車クラスを定義してみました。
@@ -93,7 +97,8 @@ OOPではクラスというひな型を定義してからそのひな型に沿�
     クラスというのは、ひな型ということを何回か話しましたね。クラスはそのままだと抽象的なものなの、いわばお菓子作りにおけるカップのようなもので、プリンを作るにはその中にプリンを入れる必要がありますね(蒸すといった工程は無視してください……)。そのひな型(クラス)からできたお菓子のことを**インスタンス**と呼びます。
 
     ```C#
-    Car myCar = new Car(100);               // Carクラスのインスタンスを生成
+    // Carクラスのインスタンスを生成
+    Car myCar = new Car(100);
     ```
 
     この`myCar`という変数に車クラスのインスタンスが代入されました。インスタンスが作成されるとき、特別なメソッドであるコンストラクタが呼び出されます。先ほど定義した`Car(int newFuel){~`の部分ですね。ここでは引数に100という数字が与えられているので、`newFuel`には100が代入され、さらに`Fuel`というインスタンス変数に100が代入されます。C#ではインスタンス変数に同じクラスのメソッドから代入するときは`this.変数名`のように書きます。
@@ -102,12 +107,18 @@ OOPではクラスというひな型を定義してからそのひな型に沿�
 
     ```C#
     myCar = new Car(100);
-    Console.WriteLine(myCar.Fuel);      // myCar.Fuelを表示
-    Console.WriteLine(myCar.Speed);     // myCar.Speedを表示
-    myCar.Fuel = 200;                   // myCar.Fuelに200を代入
-    myCar.Speed = 50;                   // myCar.Speedに50を代入
-    Console.WriteLine(myCar.Fuel);      // myCar.Fuelを表示
-    Console.WriteLine(myCar.Speed);     // myCar.Speedを表示
+    // myCar.Fuelを表示
+    Console.WriteLine(myCar.Fuel);
+    // myCar.Speedを表示
+    Console.WriteLine(myCar.Speed);
+    // myCar.Fuelに200を代入
+    myCar.Fuel = 200;
+    // myCar.Speedに50を代入
+    myCar.Speed = 50;
+    // myCar.Fuelを表示
+    Console.WriteLine(myCar.Fuel);
+    // myCar.Speedを表示
+    Console.WriteLine(myCar.Speed);
     ```
 
     > 出力結果
@@ -223,24 +234,36 @@ OOPではクラスというひな型を定義してからそのひな型に沿�
 
     通常は、
     ```C#
-    Rectangle shape1 = new Rectangle(10, 20);   // Rectangleクラスのインスタンスを作成
-    int shape1Area = shape1.GetArea();          // 面積を計算
-    Console.WriteLine(shape1Area);              // 面積を表示
+    // Rectangleクラスのインスタンスを作成
+    Rectangle shape1 = new Rectangle(10, 20);
+    // 面積を計算
+    int shape1Area = shape1.GetArea();
+    // 面積を表示
+    Console.WriteLine(shape1Area);
 
-    Triangle shape2 = new Triangle(10, 20);     // Triangleクラスのインスタンスを作成
-    int shape2Area = shape2.GetArea();          // 面積を計算
-    Console.WriteLine(shape2Area);              // 面積を表示
+    // Triangleクラスのインスタンスを作成
+    Triangle shape2 = new Triangle(10, 20);
+    // 面積を計算
+    int shape2Area = shape2.GetArea();
+    // 面積を表示
+    Console.WriteLine(shape2Area);
     ```
 
     のようにして、Rectangle型の変数、Triangle型の変数に代入します。しかし、Shape型を継承したことによって、
     ```C#
-    Shape shape1 = new Rectangle(10, 20);       // Rectangleクラスのインスタンスを作成し、Shape型の変数に代入
-    int shape1Area = shape1.GetArea();          // 面積を計算
-    Console.WriteLine(shape1Area);              // 面積を表示
+    // Rectangleクラスのインスタンスを作成し、Shape型の変数に代入
+    Shape shape1 = new Rectangle(10, 20);
+    // 面積を計算
+    int shape1Area = shape1.GetArea();
+    // 面積を表示
+    Console.WriteLine(shape1Area);
 
-    Shape shape2 = new Triangle(10, 20);        // Triangleクラスのインスタンスを作成し、Shape型の変数に代入
-    int shape2Area = shape2.GetArea();          // 面積を計算
-    Console.WriteLine(shape2Area);              // 面積を表示
+    // Triangleクラスのインスタンスを作成し、Shape型の変数に代入
+    Shape shape2 = new Triangle(10, 20);
+    // 面積を計算
+    int shape2Area = shape2.GetArea();
+    // 面積を表示
+    Console.WriteLine(shape2Area);
     ```
 
     > 出力結果
@@ -744,7 +767,7 @@ OOPではこの現実世界をいくつかのクラスに落とし込みます�
 ここまで読んでいただいてありがとうございます。私はこの文章を締め切り1分前に書いています。私もオブジェクト指向歴1年程度ですが、なんとか布教したいと思って頑張ってかみ砕いて説明しました。この機会にオブジェクト指向言語に興味を持っていただけたら幸いです。あと受験生の皆さまはぜひ本郷マイコン部にいらしてください。電子工作班が現在後継者0人なのでそれに入ってくれれば私が泣いて喜びます。それではありがとうございました。
 
 なにか質問があれば
-rin.nkmr219162@google.com
+rin.nkmr219162@gmail.com
 までお願いします。
 
 また、何か間違い、もしくは補足の説明があれば以下のページで説明します。
