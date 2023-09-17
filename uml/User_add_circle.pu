@@ -1,0 +1,18 @@
+@startuml User_add_circle
+class User{
+	+ Name
+	+ Id
+	+ MailAddress
+	+ Age
+	+ Bithday
+	+ PhoneNumber
+	+ Address
+	+ Gender
+	+ Bio
+	+ DisplayLanguage
+	+ ColorTheme
+	+ <b><color:red>CircleId</b>
+	+ <b><color:red>CircleName</b>
+	+ <b><color:red>CircleRole</b>
+}
+@enduml

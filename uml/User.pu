@@ -1,0 +1,15 @@
+@startuml User
+class User{
+	+ Name
+	+ Id
+	+ MailAddress
+	+ Age
+	+ Bithday
+	+ PhoneNumber
+	+ Address
+	+ Gender
+	+ Bio
+	+ DisplayLanguage
+	+ ColorTheme
+}
+@enduml

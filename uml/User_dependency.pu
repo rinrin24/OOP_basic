@@ -1,0 +1,28 @@
+@startuml User_dependency
+left to right direction
+class User{
+	+ Name
+	+ Id
+	+ MailAddress
+	+ Age
+	+ Bithday
+	+ PhoneNumber
+	+ Address
+	+ Gender
+	+ Bio
+	+ DisplayLanguage
+	+ ColorTheme
+	+ CircleId
+	+ CircleName
+	+ CircleRole
+}
+
+class UserManager{
+}
+
+class CircleManager{
+}
+
+UserManager ..> User
+CircleManager ..> User
+@enduml

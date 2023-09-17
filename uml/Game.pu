@@ -1,0 +1,16 @@
+@startuml Game
+class Player{
+	+ PlayerName: PlayerName
+	+ Score: int
+
+	+ void PrintInfo()
+	+ void AddScore(int scoreIncrement)
+}
+
+class Game{
+	- Players: List<Player>
+	+ void AddPlayer(Player)
+}
+
+Player <..Game
+@enduml

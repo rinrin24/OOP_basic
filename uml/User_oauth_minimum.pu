@@ -1,0 +1,9 @@
+@startuml User_oauth_minimum
+left to right direction
+class User{
+	+ Name
+	+ Id
+	+ MailAddress
+	+ PhoneNumber
+}
+@enduml

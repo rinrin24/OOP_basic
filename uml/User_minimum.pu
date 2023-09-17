@@ -1,0 +1,10 @@
+@startuml user_minimum
+left to right direction
+class User{
+	+ Name
+	+ Id
+	+ Bithday
+	+ Bio
+}
+
+@enduml

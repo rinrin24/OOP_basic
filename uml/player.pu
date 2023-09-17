@@ -1,0 +1,9 @@
+@startuml player
+class Player{
+	+ PlayerName: PlayerName
+	+ Score: int
+
+	+ void PrintInfo()
+	+ void AddScore(int scoreIncrement)
+}
+@enduml
